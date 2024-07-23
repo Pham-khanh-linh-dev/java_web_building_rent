@@ -8,21 +8,17 @@ import java.sql.Statement;
 
 import org.springframework.stereotype.Repository;
 
+import com.javaweb.Utils.connectJDBCUtil;
 import com.javaweb.repository.districtRepository;
 import com.javaweb.repository.entity.districtEntity;
 
 @Repository
 public class districtRepositoryImpl implements districtRepository{
-	
-	static final String DB_URL = "jdbc:mysql://localhost:3307/estatebasic";
-	static final String USER = "root";
-	static final String PASSWORD = "sa123";
-	
 	@Override
 	public districtEntity findNameById(Long id) {
 		String sql = "SELECT d.name FROM district d WHERE d.id = " + id + "; ";
 		districtEntity district = new districtEntity();
-		try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+		try(Connection conn = connectJDBCUtil.getConnection();
 				Statement stm = conn.createStatement();
 				ResultSet rs = stm.executeQuery(sql)){
 			while(rs.next()) {

@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.javaweb.Utils.connectJDBCUtil;
 import com.javaweb.Utils.numberUtil;
 import com.javaweb.Utils.stringUtil;
 import com.javaweb.repository.buildingRepository;
@@ -18,10 +19,6 @@ import com.javaweb.repository.entity.buildingEntity;
 @Repository
 public class buildingRepositoryImpl implements buildingRepository{
 
-	static final String DB_URL = "jdbc:mysql://localhost:3307/estatebasic";
-	static final String USER = "root";
-	static final String PASSWORD = "sa123";
-	
 	public static void joinTable(Map<String, Object> params, List<String> typeCode, StringBuilder sql) {
         String staffId = (String) params.get("staffid");
         String rentAreaTo = (String) params.get("areaTo");
@@ -107,7 +104,7 @@ public class buildingRepositoryImpl implements buildingRepository{
         sql.append(" GROUP BY b.id ");
         // Hứng đối tượng trả về từ DB
         List<buildingEntity> buildings = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+        try (Connection conn = connectJDBCUtil.getConnection();
              Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql.toString());) {
 
