@@ -3,6 +3,7 @@ package com.javaweb.converter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,9 +23,11 @@ public class buildingDTOConverter {
 	@Autowired
 	private rentAreaRepository rentAreaRe;
 	
+	@Autowired
+	private ModelMapper modelMapper;
+	
 	public buildingDTO tobuildingDTO(buildingEntity item) {
-		buildingDTO building = new buildingDTO();
-		building.setName(item.getName());
+		buildingDTO building = modelMapper.map(item, buildingDTO.class);
 		
 		districtEntity district = districtRe.findNameById(item.getDistrictId());
 		building.setAddress(item.getStreet() + "," + item.getWard() + ", " + district.getName());

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -21,9 +22,6 @@ public class buildingRepositoryImpl implements buildingRepository{
 
 	public static void joinTable(Map<String, Object> params, List<String> typeCode, StringBuilder sql) {
         String staffId = (String) params.get("staffid");
-        String rentAreaTo = (String) params.get("areaTo");
-        String rentAreaFrom = (String) params.get("areaFrom");
-
         if (stringUtil.checkString(staffId)) {
             sql.append(" INNER JOIN assignmentbuilding ON b.id = assignmentbuilding.buildingid ");
         }
@@ -31,10 +29,6 @@ public class buildingRepositoryImpl implements buildingRepository{
             sql.append(" INNER JOIN buildingrenttype ON b.id = buildingrenttype.buildingid ")
                .append("INNER JOIN renttype ON buildingrenttype.renttypeid = renttype.id ");
         }
-        if (stringUtil.checkString(rentAreaFrom) || stringUtil.checkString(rentAreaTo)) {
-            sql.append(" INNER JOIN rentarea ON rentarea.buildingid = b.id ");
-        }
-        
     }
 	
 	public static void queryNormal(Map<String, Object> params, StringBuilder sql) {
@@ -69,12 +63,20 @@ public class buildingRepositoryImpl implements buildingRepository{
         if (stringUtil.checkString(staffId)) {
             conditions.add("assignmentbuilding.staffId = " + staffId);
         }
-        if (stringUtil.checkString(rentAreaFrom)) {
-            conditions.add("rentarea.value >= " + rentAreaFrom);
+        if(stringUtil.checkString(rentAreaFrom) || stringUtil.checkString(rentAreaTo)) {
+        	List<String> rentAreaConditions = new ArrayList<>();
+        	if (stringUtil.checkString(rentAreaFrom)) {
+        		rentAreaConditions.add("r.value >= " + rentAreaFrom);
+            }
+            if (stringUtil.checkString(rentAreaTo)) {
+            	rentAreaConditions.add("r.value <= " + rentAreaTo);
+            }
+            if(!rentAreaConditions.isEmpty()) {
+            	String rentAreaCondition = String.join(" AND ", rentAreaConditions);
+            	conditions.add(" EXISTS ( SELECT * From rentarea r WHERE b.id = r.buildingid AND " + rentAreaCondition + ")");
+            }
         }
-        if (stringUtil.checkString(rentAreaTo)) {
-            conditions.add("rentarea.value <= " + rentAreaTo);
-        }
+        
         if (stringUtil.checkString(rentPriceFrom)) {
             conditions.add("b.rentprice >= " + rentPriceFrom);
         }

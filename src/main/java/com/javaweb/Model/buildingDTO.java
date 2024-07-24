@@ -3,17 +3,23 @@ package com.javaweb.Model;
 public class buildingDTO {
 
 	private String name;
-	
 	private String address;
 	private String managerName ;
 	private String managerPhoneNumber;
+	private Long floorarea;
 	private String rentArea;
 	private String emptyArea;
-	private Long floorarea;
+	private Long rentPrice;
 	private Long serviceFee;
 	private Long brokerageFee;
 	public String getName() {
 		return name;
+	}
+	public Long getRentPrice() {
+		return rentPrice;
+	}
+	public void setRentPrice(Long rentPrice) {
+		this.rentPrice = rentPrice;
 	}
 	public void setName(String name) {
 		this.name = name;
