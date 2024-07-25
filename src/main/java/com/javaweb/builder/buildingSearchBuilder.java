@@ -20,7 +20,7 @@ public class buildingSearchBuilder {
 	private String managername;
 	private String managerphonenumber;
 	private Integer staffid;
-	private List<String> typeBuilding = new ArrayList();
+	private List<String> typeBuilding;
 	private buildingSearchBuilder(Builder builder) {
 		this.name = builder.name;
 		this.street = builder.street;
@@ -82,7 +82,7 @@ public class buildingSearchBuilder {
 	public String getManagerphonenumber() {
 		return managerphonenumber;
 	}
-	public Integer getStaffid() {
+	public Integer getStaffid(String string) {
 		return staffid;
 	}
 	public List<String> getTypeBuilding() {
@@ -91,7 +91,7 @@ public class buildingSearchBuilder {
 	
 	
 //	builder
-	public class Builder{
+	public static class Builder{
 		private String name;
 		private String street;
 		private String ward;
@@ -107,54 +107,70 @@ public class buildingSearchBuilder {
 		private String managername;
 		private String managerphonenumber;
 		private Integer staffid;
-		private List<String> typeBuilding = new ArrayList();
-		public void setName(String name) {
+		private List<String> typeBuilding;
+		public Builder setName(String name) {
 			this.name = name;
+			return this;
 		}
-		public void setStreet(String street) {
+		public Builder setStreet(String street) {
 			this.street = street;
+			return this;
 		}
-		public void setWard(String ward) {
+		public Builder setWard(String ward) {
 			this.ward = ward;
+			return this;
 		}
-		public void setDistrictid(Integer districtid) {
+		public Builder setDistrictid(Integer districtid) {
 			this.districtid = districtid;
+			return this;
 		}
-		public void setNumberofbasement(Integer numberofbasement) {
+		public Builder setNumberofbasement(Integer numberofbasement) {
 			this.numberofbasement = numberofbasement;
+			return this;
 		}
-		public void setFloorarea(Integer floorarea) {
+		public Builder setFloorarea(Integer floorarea) {
 			this.floorarea = floorarea;
+			return this;
 		}
-		public void setLevel(String level) {
+		public Builder setLevel(String level) {
 			this.level = level;
+			return this;
 		}
-		public void setRentpricefrom(Integer rentpricefrom) {
+		public Builder setRentpricefrom(Integer rentpricefrom) {
 			this.rentpricefrom = rentpricefrom;
+			return this;
 		}
-		public void setRentpriceto(Integer rentpriceto) {
+		public Builder setRentpriceto(Integer rentpriceto) {
 			this.rentpriceto = rentpriceto;
+			return this;
 		}
-		public void setRentareafrom(Integer rentareafrom) {
+		public Builder setRentareafrom(Integer rentareafrom) {
 			this.rentareafrom = rentareafrom;
+			return this;
 		}
-		public void setRentareato(Integer rentareato) {
+		public Builder setRentareato(Integer rentareato) {
 			this.rentareato = rentareato;
+			return this;
 		}
-		public void setBrokeragefee(Long brokeragefee) {
+		public Builder setBrokeragefee(Long brokeragefee) {
 			this.brokeragefee = brokeragefee;
+			return this;
 		}
-		public void setManagername(String managername) {
+		public Builder setManagername(String managername) {
 			this.managername = managername;
+			return this;
 		}
-		public void setManagerphonenumber(String managerphonenumber) {
+		public Builder setManagerphonenumber(String managerphonenumber) {
 			this.managerphonenumber = managerphonenumber;
+			return this;
 		}
-		public void setStaffid(Integer staffid) {
+		public Builder setStaffid(Integer staffid) {
 			this.staffid = staffid;
+			return this;
 		}
-		public void setTypeBuilding(List<String> typeBuilding) {
+		public Builder setTypeBuilding(List<String> typeBuilding) {
 			this.typeBuilding = typeBuilding;
+			return this;
 		}
 		
 		public buildingSearchBuilder build() {

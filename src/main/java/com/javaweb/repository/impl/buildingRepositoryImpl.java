@@ -1,5 +1,6 @@
 package com.javaweb.repository.impl;
 
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,41 +16,62 @@ import org.springframework.stereotype.Repository;
 import com.javaweb.Utils.connectJDBCUtil;
 import com.javaweb.Utils.numberUtil;
 import com.javaweb.Utils.stringUtil;
+import com.javaweb.builder.buildingSearchBuilder;
 import com.javaweb.repository.buildingRepository;
 import com.javaweb.repository.entity.buildingEntity;
 @Repository
 public class buildingRepositoryImpl implements buildingRepository{
 
-	public static void joinTable(Map<String, Object> params, List<String> typeCode, StringBuilder sql) {
-        String staffId = (String) params.get("staffid");
+	public static void joinTable(buildingSearchBuilder buildingsearchbuilder, StringBuilder sql) {
+        String staffId = buildingsearchbuilder.getStaffid("staffid").toString();
         if (stringUtil.checkString(staffId)) {
             sql.append(" INNER JOIN assignmentbuilding ON b.id = assignmentbuilding.buildingid ");
         }
+        List<String> typeCode = buildingsearchbuilder.getTypeBuilding();
         if (typeCode != null && !typeCode.isEmpty()) {
             sql.append(" INNER JOIN buildingrenttype ON b.id = buildingrenttype.buildingid ")
                .append("INNER JOIN renttype ON buildingrenttype.renttypeid = renttype.id ");
         }
     }
 	
-	public static void queryNormal(Map<String, Object> params, StringBuilder sql) {
-        List<String> conditions = new ArrayList<>();
-        for (Map.Entry<String, Object> it : params.entrySet()) {
-            if (!it.getKey().equals("staffId") 
-                    && !it.getKey().equals("typeCode") 
-                    && !it.getKey().startsWith("area") 
-                    && !it.getKey().startsWith("rentPrice")) {
-                String value = it.getValue().toString();
-                if (numberUtil.isLong(value)) {
-                    conditions.add("b." + it.getKey() + " = " + value + " ");
-                } else {
-                    conditions.add("b." + it.getKey() + " LIKE '%" + value + "%' ");
-                }
-            }
-        }
-        if (!conditions.isEmpty()) {
-            sql.append(" AND ").append(String.join(" AND ", conditions));
-        }
-    }
+	public static void queryNormal(buildingSearchBuilder buildingsearchbuilder, StringBuilder sql) {
+//        List<String> conditions = new ArrayList<>();
+//        for (Map.Entry<String, Object> it : params.entrySet()) {
+//            if (!it.getKey().equals("staffId") 
+//                    && !it.getKey().equals("typeCode") 
+//                    && !it.getKey().startsWith("area") 
+//                    && !it.getKey().startsWith("rentPrice")) {
+//                String value = it.getValue().toString();
+//                if (numberUtil.isLong(value)) {
+//                    conditions.add("b." + it.getKey() + " = " + value + " ");
+//                } else {
+//                    conditions.add("b." + it.getKey() + " LIKE '%" + value + "%' ");
+//                }
+//            }
+//        }
+//        if (!conditions.isEmpty()) {
+//            sql.append(" AND ").append(String.join(" AND ", conditions));
+//        }
+		List<String> conditions = new ArrayList<>();
+		try {
+			Field[] fields = buildingSearchBuilder.class.getDeclaredFields();
+			for (Field item : fields) {
+				item.setAccessible(true);
+				String fieldName = item.getName();
+				if (!fieldName.equals("staffId") && !fieldName.equals("typeCode") && !fieldName.startsWith("area")
+						&& !fieldName.startsWith("rentPrice")) {
+					String value = item.get(buildingsearchbuilder).toString();
+					if (numberUtil.isLong(value)) {
+						conditions.add("b." + it.getKey() + " = " + value + " ");
+					} else {
+						conditions.add("b." + it.getKey() + " LIKE '%" + value + "%' ");
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public static void querySpecial(Map<String, Object> params, List<String> typeCode, StringBuilder sql) {
         String staffId = (String) params.get("staffid");
@@ -95,7 +117,7 @@ public class buildingRepositoryImpl implements buildingRepository{
     }
 	
 	@Override
-	public List<buildingEntity> findAll(Map<String, Object> params, List<String> typeCode) {
+	public List<buildingEntity> findAll(buildingSearchBuilder buildingsearchbuilder) {
 		StringBuilder sql = new StringBuilder("SELECT b.id, b.name, b.districtid, b.ward, b.street, b.rentprice, b.numberofbasement, b.floorarea, b.servicefee, b. brokeragefee, b.managername, b.managerphonenumber FROM building b ");
 
         // Xử lý join table và câu lệnh 
