@@ -82,7 +82,7 @@ public class buildingSearchBuilder {
 	public String getManagerphonenumber() {
 		return managerphonenumber;
 	}
-	public Integer getStaffid(String string) {
+	public Integer getStaffid() {
 		return staffid;
 	}
 	public List<String> getTypeBuilding() {

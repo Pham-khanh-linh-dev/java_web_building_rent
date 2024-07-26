@@ -8,4 +8,7 @@ public class stringUtil {
 		}
 		return true;
 	}
+	public static String safeToString(Object obj) {
+	    return obj != null ? obj.toString() : "";
+	}
 }
