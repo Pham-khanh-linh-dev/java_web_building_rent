@@ -47,7 +47,7 @@ public class buildingServiceImpl implements buildingService{
 			result.add(building);
 		}
 		return result;
-		
 	}
 	
 }
+

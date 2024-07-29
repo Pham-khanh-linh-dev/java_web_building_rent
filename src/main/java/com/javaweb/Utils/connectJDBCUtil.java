@@ -6,9 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class connectJDBCUtil {
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
-	static final String DB_URL = "jdbc:mysql://localhost:3307/estatebasic";
+@PropertySource("classpath:application-uat.properties")
+public class connectJDBCUtil {
+	@Value("${spring.datasource.url}")
+	static String DB_URL;
+	
 	static final String USER = "root";
 	static final String PASSWORD = "sa123";
 	
