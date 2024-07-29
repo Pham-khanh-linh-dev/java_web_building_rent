@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application-uat.properties")
 public class connectJDBCUtil {
 	@Value("${spring.datasource.url}")
-	static String DB_URL;
+	public static String DB_URL;
 	
 	static final String USER = "root";
 	static final String PASSWORD = "sa123";
