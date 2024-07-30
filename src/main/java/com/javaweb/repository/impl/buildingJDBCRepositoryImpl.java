@@ -22,7 +22,7 @@ import com.javaweb.builder.buildingSearchBuilder;
 import com.javaweb.repository.buildingRepository;
 import com.javaweb.repository.entity.buildingEntity;
 @Repository
-public class buildingRepositoryImpl implements buildingRepository{
+public class buildingJDBCRepositoryImpl implements buildingRepository{
 
 	public static void joinTable(buildingSearchBuilder buildingsearchbuilder, StringBuilder sql) {
 		String staffId = buildingsearchbuilder.getStaffid() != null ? buildingsearchbuilder.getStaffid().toString() : null;
@@ -196,5 +196,11 @@ public class buildingRepositoryImpl implements buildingRepository{
         }
         return buildings;
     }
+
+	@Override
+	public void DeleteById(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

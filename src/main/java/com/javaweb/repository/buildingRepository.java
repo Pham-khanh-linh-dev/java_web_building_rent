@@ -10,4 +10,5 @@ public interface buildingRepository {
 	
 	public List<buildingEntity> findAll(buildingSearchBuilder buildingsearchbuilder);
 
+	public void DeleteById(Long id);
 }
