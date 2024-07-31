@@ -7,25 +7,25 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.javaweb.Model.buildingDTO;
-import com.javaweb.repository.buildingRepository;
-import com.javaweb.repository.districtRepository;
-import com.javaweb.repository.rentAreaRepository;
-import com.javaweb.repository.entity.buildingEntity;
-import com.javaweb.repository.entity.districtEntity;
-import com.javaweb.repository.entity.rentAreaEntity;
+import com.javaweb.Model.BuildingDTO;
+import com.javaweb.repository.BuildingRepository;
+import com.javaweb.repository.DistrictRepository;
+import com.javaweb.repository.RentAreaRepository;
+import com.javaweb.repository.entity.BuildingEntity;
+import com.javaweb.repository.entity.DistrictEntity;
+import com.javaweb.repository.entity.RentAreaEntity;
 
 @Component
-public class buildingDTOConverter {
+public class BuildingDTOConverter {
 
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public buildingDTO tobuildingDTO(buildingEntity item) {
-		buildingDTO building = modelMapper.map(item, buildingDTO.class);
+	public BuildingDTO tobuildingDTO(BuildingEntity item) {
+		BuildingDTO building = modelMapper.map(item, BuildingDTO.class);
 		building.setAddress(item.getStreet() + "," + item.getWard() + ", " + item.getDistrict().getName());
 		
-		List<rentAreaEntity> rentarea = item.getRentarea();
+		List<RentAreaEntity> rentarea = item.getRentarea();
 		String areaResult = rentarea.stream().map(it -> it.getValue().toString()).collect(Collectors.joining(", "));
 		building.setRentArea(areaResult);
 		return building;

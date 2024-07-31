@@ -1,6 +1,6 @@
 package com.javaweb.Utils;
 
-public class numberUtil {
+public class NumberUtil {
 
 	public static boolean isLong(String str) {
 		try {

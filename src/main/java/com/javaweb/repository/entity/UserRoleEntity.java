@@ -9,7 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 @Entity
 @Table(name = "userrole")
-public class userRoleEntity {
+public class UserRoleEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,22 +17,22 @@ public class userRoleEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "userid")
-	private userEntity user;
+	private UserEntity user;
 	
 	@ManyToOne
 	@JoinColumn(name = "roleid")
-	private roleEntity role;
+	private RoleEntity role;
 
 	
 	public Long getId() {
 		return id;
 	}
 
-	public userEntity getUser() {
+	public UserEntity getUser() {
 		return user;
 	}
 
-	public roleEntity getRole() {
+	public RoleEntity getRole() {
 		return role;
 	}
 
@@ -40,11 +40,11 @@ public class userRoleEntity {
 		this.id = id;
 	}
 
-	public void setUser(userEntity user) {
+	public void setUser(UserEntity user) {
 		this.user = user;
 	}
 
-	public void setRole(roleEntity role) {
+	public void setRole(RoleEntity role) {
 		this.role = role;
 	}
 	

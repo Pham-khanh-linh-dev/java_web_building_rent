@@ -1,6 +1,6 @@
 package com.javaweb.Model;
 
-public class buildingDTO {
+public class BuildingDTO {
 
 	private String name;
 	private String address;

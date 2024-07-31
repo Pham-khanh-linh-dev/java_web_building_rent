@@ -9,11 +9,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.javaweb.Utils.connectJDBCUtil;
-import com.javaweb.repository.rentAreaRepository;
-import com.javaweb.repository.entity.rentAreaEntity;
+import com.javaweb.Utils.ConnectJDBCUtil;
+import com.javaweb.repository.RentAreaRepository;
+import com.javaweb.repository.entity.RentAreaEntity;
 
 
-public class rentAreaRepositoryImpl{
+public class RentAreaRepositoryImpl{
 
 }

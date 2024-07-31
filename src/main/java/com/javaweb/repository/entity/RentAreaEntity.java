@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "rentarea")
-public class rentAreaEntity {
+public class RentAreaEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -38,13 +38,13 @@ public class rentAreaEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "buildingid")
-	private buildingEntity building;
+	private BuildingEntity building;
 
-	public buildingEntity getBuilding() {
+	public BuildingEntity getBuilding() {
 		return building;
 	}
 
-	public void setBuilding(buildingEntity building) {
+	public void setBuilding(BuildingEntity building) {
 		this.building = building;
 	}
 	

@@ -3,7 +3,7 @@ package com.javaweb.builder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class buildingSearchBuilder {
+public class BuildingSearchBuilder {
 
 	private String name;
 	private String street;
@@ -21,7 +21,7 @@ public class buildingSearchBuilder {
 	private String managerphonenumber;
 	private Integer staffid;
 	private List<String> typeBuilding;
-	private buildingSearchBuilder(Builder builder) {
+	private BuildingSearchBuilder(Builder builder) {
 		this.name = builder.name;
 		this.street = builder.street;
 		this.ward = builder.ward;
@@ -173,8 +173,8 @@ public class buildingSearchBuilder {
 			return this;
 		}
 		
-		public buildingSearchBuilder build() {
-			return new buildingSearchBuilder(this);
+		public BuildingSearchBuilder build() {
+			return new BuildingSearchBuilder(this);
 		}
 	}
 	

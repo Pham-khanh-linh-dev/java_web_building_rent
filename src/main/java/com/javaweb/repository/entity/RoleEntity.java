@@ -1,5 +1,4 @@
 package com.javaweb.repository.entity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,47 +12,56 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
+
 @Entity
-@Table(name="district")
-public class districtEntity {
+@Table(name = "role")
+public class RoleEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "code")
-	private String code;
-	
-	@Column(name = "name")
+	@Column(name = "name", nullable = false)
 	private String name;
 	
-	@OneToMany(mappedBy = "district", fetch = FetchType.LAZY)
-	private List<buildingEntity> items = new ArrayList<>();
+	@Column(name = "code",unique = true, nullable = false)
+	private String code;
+
+	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+	private List<UserRoleEntity> items = new ArrayList<>() ;
 	
 	
-	public List<buildingEntity> getItems() {
+	public List<UserRoleEntity> getItems() {
 		return items;
 	}
-	public void setItems(List<buildingEntity> items) {
+
+	public void setItems(List<UserRoleEntity> items) {
 		this.items = items;
 	}
+
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
+
 	public String getName() {
 		return name;
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
 	
 }

@@ -2,7 +2,7 @@ package com.javaweb.Utils;
 
 import java.util.Map;
 
-public class mapUtil {
+public class MapUtil {
 
 	public static <T> T getObject(Map<String, Object> params, String key, Class<T> tClass) {
 		Object obj = params.getOrDefault(key, null);

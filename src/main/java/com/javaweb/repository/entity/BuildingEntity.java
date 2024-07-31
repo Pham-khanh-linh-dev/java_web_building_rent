@@ -16,7 +16,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 @Entity
 @Table(name="building")
-public class buildingEntity {
+public class BuildingEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -116,27 +116,27 @@ public class buildingEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "districtid")
-	private districtEntity district;
+	private DistrictEntity district;
 	
 	@OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
-	private List<rentAreaEntity> rentarea = new ArrayList<>();
+	private List<RentAreaEntity> rentarea = new ArrayList<>();
 	
 	
-	public districtEntity getDistrict() {
+	public DistrictEntity getDistrict() {
 		return district;
 	}
 	public void setRentprice(Integer rentprice) {
 		this.rentprice = rentprice;
 	}
-	public void setDistrict(districtEntity districtentity) {
+	public void setDistrict(DistrictEntity districtentity) {
 		this.district = districtentity;
 	}
 	
 	
-	public List<rentAreaEntity> getRentarea() {
+	public List<RentAreaEntity> getRentarea() {
 		return rentarea;
 	}
-	public void setRentarea(List<rentAreaEntity> rentarea) {
+	public void setRentarea(List<RentAreaEntity> rentarea) {
 		this.rentarea = rentarea;
 	}
 	public Long getId() {

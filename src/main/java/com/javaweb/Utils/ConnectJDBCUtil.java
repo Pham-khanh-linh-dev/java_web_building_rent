@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 
 @PropertySource("classpath:application-uat.properties")
-public class connectJDBCUtil {
+public class ConnectJDBCUtil {
 	@Value("${spring.datasource.url}")
 	public static String DB_URL;
 	

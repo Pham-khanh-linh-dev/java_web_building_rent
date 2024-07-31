@@ -14,7 +14,7 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 @Table(name="user")
-public class userEntity {
+public class UserEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,14 +39,14 @@ public class userEntity {
 	private String status;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private List<userRoleEntity> items = new ArrayList<>();
+	private List<UserRoleEntity> items = new ArrayList<>();
 
 	
-	public List<userRoleEntity> getItems() {
+	public List<UserRoleEntity> getItems() {
 		return items;
 	}
 
-	public void setItems(List<userRoleEntity> items) {
+	public void setItems(List<UserRoleEntity> items) {
 		this.items = items;
 	}
 

@@ -8,9 +8,9 @@ import java.sql.Statement;
 
 import org.springframework.stereotype.Repository;
 
-import com.javaweb.Utils.connectJDBCUtil;
-import com.javaweb.repository.districtRepository;
-import com.javaweb.repository.entity.districtEntity;
+import com.javaweb.Utils.ConnectJDBCUtil;
+import com.javaweb.repository.DistrictRepository;
+import com.javaweb.repository.entity.DistrictEntity;
 
-public class districtRepositoryImpl{
+public class DistrictRepositoryImpl{
 }

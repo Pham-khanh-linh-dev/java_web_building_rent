@@ -1,6 +1,6 @@
 package com.javaweb.Model;
 
-public class districtDTO {
+public class DistrictDTO {
 
 	private Long id;
 	private String code, name;
