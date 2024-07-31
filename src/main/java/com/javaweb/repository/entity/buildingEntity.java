@@ -4,16 +4,16 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 @Entity
 @Table(name="building")
 public class buildingEntity {
@@ -29,9 +29,6 @@ public class buildingEntity {
 	
 	@Column(name="ward")
 	private String ward;
-	
-	@Column(name = "districtid")
-	private Long districtId;
 	
 	@Column(name="structure")
 	private String structure;
@@ -60,7 +57,7 @@ public class buildingEntity {
 	@Column(name="carfee")
 	private String carfee;
 	
-	@Column(name="carfee")
+	@Column(name="motorbikefee")
 	private String motorbikefee;
 	
 	@Column(name="overtimefee")
@@ -122,23 +119,25 @@ public class buildingEntity {
 	private districtEntity district;
 	
 	@OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
-	private List<rentAreaEntity> items = new ArrayList<>();
+	private List<rentAreaEntity> rentarea = new ArrayList<>();
 	
-	public districtEntity getDistrictentity() {
+	
+	public districtEntity getDistrict() {
 		return district;
 	}
 	public void setRentprice(Integer rentprice) {
 		this.rentprice = rentprice;
 	}
-	public void setDistrictentity(districtEntity districtentity) {
+	public void setDistrict(districtEntity districtentity) {
 		this.district = districtentity;
 	}
 	
-	public List<rentAreaEntity> getItems() {
-		return items;
+	
+	public List<rentAreaEntity> getRentarea() {
+		return rentarea;
 	}
-	public void setItems(List<rentAreaEntity> items) {
-		this.items = items;
+	public void setRentarea(List<rentAreaEntity> rentarea) {
+		this.rentarea = rentarea;
 	}
 	public Long getId() {
 		return id;
@@ -247,12 +246,6 @@ public class buildingEntity {
 	}
 	public void setDeposit(String deposit) {
 		this.deposit = deposit;
-	}
-	public Long getDistrictId() {
-		return districtId;
-	}
-	public void setDistrictId(Long districtId) {
-		this.districtId = districtId;
 	}
 	public String getPayment() {
 		return payment;

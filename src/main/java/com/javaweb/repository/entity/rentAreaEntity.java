@@ -1,13 +1,13 @@
 package com.javaweb.repository.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "rentarea")
@@ -18,8 +18,6 @@ public class rentAreaEntity {
 	
 	@Column(name = "value")
 	private Long value;
-	@Column(name = "buildingid")
-	private Long buildingid;
 
 	public Long getId() {
 		return id;
@@ -37,13 +35,6 @@ public class rentAreaEntity {
 		this.value = value;
 	}
 
-	public Long getBuildingid() {
-		return buildingid;
-	}
-
-	public void setBuildingid(Long buildingid) {
-		this.buildingid = buildingid;
-	}
 	
 	@ManyToOne
 	@JoinColumn(name = "buildingid")
