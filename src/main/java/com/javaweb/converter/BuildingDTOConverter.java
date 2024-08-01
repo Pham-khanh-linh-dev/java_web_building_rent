@@ -22,7 +22,10 @@ public class BuildingDTOConverter {
 	private ModelMapper modelMapper;
 	
 	public BuildingDTO tobuildingDTO(BuildingEntity item) {
+//		ánh xạ giá trị map 1:1 giữa 2 đối tượng
 		BuildingDTO building = modelMapper.map(item, BuildingDTO.class);
+
+//		Xử lý các giá trị đặc biệt
 		building.setAddress(item.getStreet() + "," + item.getWard() + ", " + item.getDistrict().getName());
 		
 		List<RentAreaEntity> rentarea = item.getRentarea();

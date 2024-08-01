@@ -9,6 +9,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.OneToMany;
 
@@ -38,16 +41,32 @@ public class UserEntity {
 	@Column(name = "status")
 	private String status;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private List<UserRoleEntity> items = new ArrayList<>();
+//	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//	private List<UserRoleEntity> items = new ArrayList<>();
 
+//	public List<UserRoleEntity> getItems() {
+//		return items;
+//	}
+//
+//	public void setItems(List<UserRoleEntity> items) {
+//		this.items = items;
+//	}
+	@ManyToMany
+	@JoinTable(
+			name = "user_role",
+			joinColumns  = @JoinColumn(name = "userid"),
+			inverseJoinColumns = @JoinColumn(name = "roleid"))
+	private List<RoleEntity> roles;
 	
-	public List<UserRoleEntity> getItems() {
-		return items;
+	
+
+
+	public List<RoleEntity> getRoles() {
+		return roles;
 	}
 
-	public void setItems(List<UserRoleEntity> items) {
-		this.items = items;
+	public void setRoles(List<RoleEntity> roles) {
+		this.roles = roles;
 	}
 
 	public Long getId() {

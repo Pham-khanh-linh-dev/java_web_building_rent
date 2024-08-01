@@ -169,7 +169,7 @@ public class buildingJDBCRepositoryImpl implements BuildingRepository{
 	
 	@Override
 	public List<BuildingEntity> findAll(BuildingSearchBuilder buildingsearchbuilder) {
-		StringBuilder sql = new StringBuilder("SELECT b.id, b.name, b.districtid, b.ward, b.street, b.rentprice, b.numberofbasement, b.floorarea, b.servicefee, b. brokeragefee, b.managername, b.managerphonenumber FROM building b ");
+		StringBuilder sql = new StringBuilder("SELECT b.* FROM building b ");
 
         // Xử lý join table và câu lệnh 
         joinTable(buildingsearchbuilder, sql);

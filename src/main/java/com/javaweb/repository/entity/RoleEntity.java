@@ -8,9 +8,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
 
 
 @Entity
@@ -27,16 +27,27 @@ public class RoleEntity {
 	@Column(name = "code",unique = true, nullable = false)
 	private String code;
 
-	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-	private List<UserRoleEntity> items = new ArrayList<>() ;
+//	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+//	private List<UserRoleEntity> items = new ArrayList<>() ;
+//	
 	
+//	public List<UserRoleEntity> getItems() {
+//		return items;
+//	}
+//
+//	public void setItems(List<UserRoleEntity> items) {
+//		this.items = items;
+//	}
 	
-	public List<UserRoleEntity> getItems() {
-		return items;
+	@ManyToMany(mappedBy = "roles")
+	private List<UserEntity> users;
+	
+	public List<UserEntity> getUsers() {
+		return users;
 	}
 
-	public void setItems(List<UserRoleEntity> items) {
-		this.items = items;
+	public void setUsers(List<UserEntity> users) {
+		this.users = users;
 	}
 
 	public Long getId() {
