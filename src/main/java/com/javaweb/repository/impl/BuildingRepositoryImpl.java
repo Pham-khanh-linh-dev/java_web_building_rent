@@ -14,12 +14,11 @@ import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.entity.BuildingEntity;
 
 @Repository
-@Primary
-public class BuildingRepositoryImpl implements BuildingRepository{
+public class BuildingRepositoryImpl{
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	@Override
+//	@Override
 	public List<BuildingEntity> findAll(BuildingSearchBuilder buildingsearchbuilder) {
 		// TODO Auto-generated method stub
 		//JPQL
@@ -33,7 +32,7 @@ public class BuildingRepositoryImpl implements BuildingRepository{
 		return query_native.getResultList();
 	}
 
-	@Override
+//	@Override
 	public void DeleteById(Long id) {
 		// TODO Auto-generated method stub
 		

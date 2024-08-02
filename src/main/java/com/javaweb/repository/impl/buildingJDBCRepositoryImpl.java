@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +29,8 @@ import jakarta.persistence.Query;
 
 
 @Repository
-public class buildingJDBCRepositoryImpl implements BuildingRepository{
+@Primary
+public class buildingJDBCRepositoryImpl {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -167,7 +169,7 @@ public class buildingJDBCRepositoryImpl implements BuildingRepository{
 	    }
     }
 	
-	@Override
+//	@Override
 	public List<BuildingEntity> findAll(BuildingSearchBuilder buildingsearchbuilder) {
 		StringBuilder sql = new StringBuilder("SELECT b.* FROM building b ");
 
@@ -209,7 +211,7 @@ public class buildingJDBCRepositoryImpl implements BuildingRepository{
         return query.getResultList();
     }
 
-	@Override
+//	@Override
 	public void DeleteById(Long id) {
 		// TODO Auto-generated method stub
 		
