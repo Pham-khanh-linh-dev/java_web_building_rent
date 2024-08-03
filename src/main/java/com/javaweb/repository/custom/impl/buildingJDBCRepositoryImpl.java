@@ -1,4 +1,4 @@
-package com.javaweb.repository.impl;
+package com.javaweb.repository.custom.impl;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;
@@ -21,6 +21,7 @@ import com.javaweb.Utils.NumberUtil;
 import com.javaweb.Utils.StringUtil;
 import com.javaweb.builder.BuildingSearchBuilder;
 import com.javaweb.repository.BuildingRepository;
+import com.javaweb.repository.custom.BuildingRepositoryCustom;
 import com.javaweb.repository.entity.BuildingEntity;
 
 import jakarta.persistence.EntityManager;
@@ -30,7 +31,7 @@ import jakarta.persistence.Query;
 
 @Repository
 @Primary
-public class buildingJDBCRepositoryImpl {
+public class buildingJDBCRepositoryImpl implements BuildingRepositoryCustom{
 
 	@PersistenceContext
 	private EntityManager entityManager;
