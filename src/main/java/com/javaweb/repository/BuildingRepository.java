@@ -10,8 +10,5 @@ import com.javaweb.repository.custom.BuildingRepositoryCustom;
 import com.javaweb.repository.entity.BuildingEntity;
 
 public interface BuildingRepository extends JpaRepository<BuildingEntity, Long>, BuildingRepositoryCustom{
-	
-	public List<BuildingEntity> findAll(BuildingSearchBuilder buildingsearchbuilder);
 
-	public void DeleteById(Long id);
 }

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -30,8 +31,7 @@ import jakarta.persistence.Query;
 
 
 @Repository
-@Primary
-public class buildingJDBCRepositoryImpl implements BuildingRepositoryCustom{
+public class BuildingRepositoryCustomImpl implements BuildingRepositoryCustom{
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -74,7 +74,7 @@ public class buildingJDBCRepositoryImpl implements BuildingRepositoryCustom{
 //			Class buildingSearchClass = BuildingSearchBuilder.class;
 //			Field[] fields = buildingSearchClass.getDeclaredFields();
 //			for (Field item : fields) {
-////				Dùng setAccessible(true) để có quyền truy cầm vào các filed trong đối tượng BuildingSearchBuilder
+//				Dùng setAccessible(true) để có quyền truy cầm vào các filed trong đối tượng BuildingSearchBuilder
 //				item.setAccessible(true);
 //				String fieldName = item.getName();
 //				if (!fieldName.equals("staffId") && !fieldName.equals("typeCode") && !fieldName.startsWith("area")
@@ -170,8 +170,8 @@ public class buildingJDBCRepositoryImpl implements BuildingRepositoryCustom{
 	    }
     }
 	
-//	@Override
-	public List<BuildingEntity> findAll(BuildingSearchBuilder buildingsearchbuilder) {
+	@Override
+	public List<BuildingEntity> findAllBuilding(BuildingSearchBuilder buildingsearchbuilder) {
 		StringBuilder sql = new StringBuilder("SELECT b.* FROM building b ");
 
         // Xử lý join table và câu lệnh 

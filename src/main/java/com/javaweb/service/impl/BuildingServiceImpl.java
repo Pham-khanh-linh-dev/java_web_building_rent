@@ -25,22 +25,20 @@ import com.javaweb.service.BuildingService;
 public class BuildingServiceImpl implements BuildingService{
 
 //	Dùng @Autowired nôm na để khởi tạo đối tượng cho interface( Cần tìm hiểu chi tiết cách hoạt động)
+	@Autowired
 	private BuildingRepository buildingRe;
+	
+	@Autowired
 	private BuildingDTOConverter buildingDTOCo;
 	@Autowired
 	private BuildingSearchBuilderConverter buildingserachbuilderconverter;
 	
-	 @Autowired
-	    public BuildingServiceImpl(BuildingRepository buildingRe, BuildingDTOConverter buildingDTOCo) {
-	        this.buildingRe = buildingRe;
-	        this.buildingDTOCo = buildingDTOCo;
-	    }
-	 
+	@Override
 	public List<BuildingDTO> findAll(Map<String, Object> params, List<String> typeCode) {
 		// TODO Auto-generated method stub
 		BuildingSearchBuilder buildingsearchbuilder = buildingserachbuilderconverter.toBuildingSearchBuilder(params, typeCode);
 		
-		List<BuildingEntity> BuildingEntities = buildingRe.findAll();
+		List<BuildingEntity> BuildingEntities = buildingRe.findAllBuilding(buildingsearchbuilder);
 		List<BuildingDTO> result = new ArrayList<BuildingDTO>();
 		for(BuildingEntity item: BuildingEntities) {
 			BuildingDTO building = buildingDTOCo.tobuildingDTO(item);

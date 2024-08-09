@@ -21,20 +21,20 @@ public class Transaction {
 	
 	@ManyToOne
 	@JoinColumn(name = "customerid")
-	private Customer customer;
+	private CustomerEntity customer;
 	
 	@ManyToOne
 	@JoinColumn(name = "type")
 	private TransactionType type;
 
 	
-	public Customer getCustomer() {
+	public CustomerEntity getCustomer() {
 		return customer;
 	}
 
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomer(CustomerEntity customerEntity) {
+		this.customer = customerEntity;
 	}
 
 
